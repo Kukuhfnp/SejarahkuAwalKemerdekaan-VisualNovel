@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6a59e4415e94204c9ba05203f7c55f9, type: 3}
+  m_Name: Character Configuration Asset
+  m_EditorClassIdentifier: 
+  characters:
+  - name: Stella
+    alias: s
+    characterType: 1
+    nameColor: {r: 1, g: 1, b: 1, a: 0}
+    dialogueColor: {r: 1, g: 1, b: 1, a: 0}
+    nameFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    dialogueFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    nameFontSize: 40
+    dialogueFontSize: 32
+    sprites:
+      _serializedList: []
+  - name: Elen
+    alias: e
+    characterType: 0
+    nameColor: {r: 1, g: 0.7773585, b: 0.7773585, a: 0}
+    dialogueColor: {r: 1, g: 0.72027034, b: 0.48490566, a: 0}
+    nameFont: {fileID: 11400000, guid: 1f9987afb925cfc46ad034ca97acfba8, type: 2}
+    dialogueFont: {fileID: 11400000, guid: e94f9ea549dac6348b79fb33e9451f34, type: 2}
+    nameFontSize: 40
+    dialogueFontSize: 32
+    sprites:
+      _serializedList: []
+  - name: Benjamin
+    alias: ben
+    characterType: 0
+    nameColor: {r: 0.56981134, g: 1, b: 0.61679715, a: 0}
+    dialogueColor: {r: 0.5981132, g: 1, b: 0.97904956, a: 0}
+    nameFont: {fileID: 11400000, guid: a6a9963a494a04c47bfb712ccfd23da3, type: 2}
+    dialogueFont: {fileID: 11400000, guid: d22ea559779c55a4cbbc1aae11309bf6, type: 2}
+    nameFontSize: 0
+    dialogueFontSize: 0
+    sprites:
+      _serializedList: []
+  - name: Alya
+    alias: a
+    characterType: 1
+    nameColor: {r: 1, g: 1, b: 1, a: 0}
+    dialogueColor: {r: 1, g: 1, b: 1, a: 0}
+    nameFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
+    dialogueFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
+    nameFontSize: 40
+    dialogueFontSize: 32
+    sprites:
+      _serializedList:
+      - Key: happy
+        Value: {fileID: 21300000, guid: 64cc44229931e234c8d2636f0372e697, type: 3}
+      - Key: sad
+        Value: {fileID: 21300000, guid: 89bfc6b0d02436d47a549f7994efc452, type: 3}
+      - Key: upset
+        Value: {fileID: 21300000, guid: 6f11ed768b74f4b41898ed7bbb84404d, type: 3}
+      - Key: blush
+        Value: {fileID: 21300000, guid: ac1784a9924cf0d4f868c0efae5f0384, type: 3}
+      - Key: surprised
+        Value: {fileID: 21300000, guid: 3f3a83164cb4b8d43b87e11c0d0a8821, type: 3}
+  - name: Tia
+    alias: t
+    characterType: 1
+    nameColor: {r: 1, g: 1, b: 1, a: 0}
+    dialogueColor: {r: 1, g: 1, b: 1, a: 0}
+    nameFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
+    dialogueFont: {fileID: 11400000, guid: 72d68798eca17354db4eeb6d95d4a306, type: 2}
+    nameFontSize: 40
+    dialogueFontSize: 32
+    sprites:
+      _serializedList:
+      - Key: angry01
+        Value: {fileID: 21300000, guid: 5cf951f802eb76e41a51c106b4e1763f, type: 3}
+      - Key: angry02
+        Value: {fileID: 21300000, guid: f788c2ec40931084ab7292661745125b, type: 3}
+      - Key: annoyed01
+        Value: {fileID: 21300000, guid: 3ce40f04c64dd074cbf0caf5e738179a, type: 3}
+      - Key: annoyed02
+        Value: {fileID: 21300000, guid: cb852613452e4d7418eb9b92048f702d, type: 3}
+      - Key: neutral01
+        Value: {fileID: 21300000, guid: f4206e23ef2b66c4d8dc8ea1832737af, type: 3}
+      - Key: neutral02
+        Value: {fileID: 21300000, guid: 88b71c720adfb2f40a65488d1c0bd87b, type: 3}
+      - Key: sad01
+        Value: {fileID: 21300000, guid: e82eff711d7347a49b5cdaf0a368999e, type: 3}
+      - Key: sad02
+        Value: {fileID: 21300000, guid: d3942e36d140c344ea42efeaf2462cf5, type: 3}
+      - Key: sad03
+        Value: {fileID: 21300000, guid: 7a48d0e392a0092478ac0cff8219078b, type: 3}
+      - Key: smile01
+        Value: {fileID: 21300000, guid: 86d7d5677240b084fb0f43215de33feb, type: 3}
+      - Key: smile02
+        Value: {fileID: 21300000, guid: c79d991d9d68d1b4c966fd167eaee9d9, type: 3}
+      - Key: smile03
+        Value: {fileID: 21300000, guid: e70c2929c8056994a87163e175b44ee6, type: 3}
+      - Key: smile04
+        Value: {fileID: 21300000, guid: 0b6512afc31d1df49b0e40468623173e, type: 3}

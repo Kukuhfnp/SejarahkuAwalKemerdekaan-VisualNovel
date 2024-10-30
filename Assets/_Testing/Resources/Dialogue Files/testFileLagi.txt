@@ -1,0 +1,57 @@
+
+PlayAmbience(RainyMood), wait(1)
+PlaySong(upbeat -v 0.2)
+Narrator "Kisah dimulai"
+SetLayerMedia(background 1 02_1)
+
+CreateCharacter(Tia -e true -i true)
+
+Tia.SetPosition(0.5),
+Tia.FlipRight(-i true), wait(1)
+Tia.FlipLeft(-i true)
+Tia "So, tell me. Do you like dogs or cats?"
+
+choice "What Pet Do You Prefer?"
+$duid = 50
+{
+    -Dogs
+        Tia "Dogs are wonderful. They give you so much undeserved love!"
+        <mainChar> "Do you have a dog?"
+        Tia "No, but one day I would love to have a big fluffy one!"
+        Tia "Kita punya uang $duid"
+        Tia "Sekali lagi kita punya uang $duid"
+        Tia "mari kita pergi ke text selanjutnya.", wait(1)
+        Unhighlight(Tia),wait(1)
+        HideDB(-spd 1)
+        Tia.Hide()
+        wait(0.75)
+        ClearLayerMedia(background), wait(1)
+        StopSong(), StopAmbience()
+        wait(1)
+        Load(testFile -enqueue true)
+    -Cats
+        Tia "I love cats! {a}Well, {wa 0.5}when they aren't knocking over things ... "
+        "But they can be so graceful at times."
+        " ... {c}Except when they're knocking over things, haha!"
+        Load(testFile -enqueue true)
+    -I Prefer Chinchillas
+        Tia "Oh, they're cute."
+        "Did you know they take dust baths? I had no idea!"
+        Load(testFile -enqueue true)
+    -Arachnids
+        Tia "Ew! - Why spiders ?! "
+        choice "Why Spiders?"
+        {
+            -Have you ever seen a baby jumping spider?
+                Tia "Oh - yeah, youre right. Those are pretty cute."
+                "But from a distance."
+            -Spiders aren't the only arachnids, you know.
+                Tia "If its got eight legs, it's close enough!"
+            -They're cool.
+                Tia "Well, we can be friends as long as you keep them away from me."
+                "I don't want any of that eight-legged freak action ... "
+        }
+        <mainChar> "Say what you will, I like them."
+        Tia "Everyone's got their preferences."
+        Load(testFile -enqueue true)
+}

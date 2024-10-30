@@ -1,0 +1,21 @@
+
+print_1p("This is a command running straight from our dialogue file!")
+
+John "Move Left and then Right" print_1p("Start Moving"), [wait]moveCharDemo(Left), [wait]moveCharDemo(Right), print_1p("Done Moving")
+
+"Move Right" moveCharDemo(right)
+
+John "Let's play some music!" PlaySong("Funky Beets" -v 0.75 -p 1), setMood(chill)
+
+Elen "You have taste in music." PlayVoice("e_d1_v2" -v 1.5), SetBackground(Room1 -t "Diagonal Lines" -s 3.5)
+
+setAccomplishment("A Legendary Boombox" true), setCLI(Elen 0:Angle1 1:Intrigued -s 2.3 -l true)
+
+showScene(false),StopMusic(all -s 1.5)
+
+
+list command dialogue
+{c}            => clear
+{a}            => append
+{wc n}         => wait clear
+{wa n}         => wait append

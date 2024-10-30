@@ -1,0 +1,170 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+using static DialogueSystem.LogicalLines.LogicalLineUtilities.Encapsulation;
+using static DialogueSystem.LogicalLines.LogicalLineUtilities.Conditions;
+using System;
+
+
+namespace DialogueSystem.LogicalLines
+{
+    public class LL_Condition : ILogicalLine
+    {
+        public string keyword => "if";
+        private const string Else = "else";
+        private const string ElseIf = "else if";
+        private readonly string[] Containers = new string[] { "(", ")" };
+
+        public IEnumerator Execute(DialogueLine line)
+        {
+            string rawCondition = ExtractCondition(line.rawData.Trim());
+            bool ifConditionResult = EvaluateCondition(rawCondition);
+            bool elseIfConditionResult = false;
+
+            Conversation currentConversation = DialogueManager.instance.conversationManager.currentConversation;
+            int currentProgress = DialogueManager.instance.conversationManager.currentConversationProgress;
+
+            Debug.Log(currentProgress);
+
+            EncapsulatedData ifData = RipEncapsulationData(currentConversation, currentProgress, false);
+            EncapsulatedData elseIfData = new EncapsulatedData { lines = new List<string>()};
+            EncapsulatedData elseData = new EncapsulatedData { lines = new List<string>()};
+
+            EncapsulatedData tempData = new EncapsulatedData();
+
+            Debug.Log(ifData.endingIndex + 1);
+            Debug.Log(currentConversation.GetLines()[ifData.endingIndex + 1].Trim());
+
+            if (ifData.endingIndex + 1 < currentConversation.Count)
+            {
+                //get the indentation of the line
+                char[] ifLineCharArray = line.dialogueData.rawData.ToCharArray();
+                int ifIndentCount = GetIndentCount(ifLineCharArray);
+
+                string nextLine = currentConversation.GetLines()[ifData.endingIndex + 1].Trim();
+
+                if (nextLine == Else)
+                {
+                    elseData = RipEncapsulationData(currentConversation, ifData.endingIndex + 1, false);
+                    ifData.endingIndex = elseData.endingIndex;
+                }
+                else if (nextLine.Contains(ElseIf))
+                {
+
+                    //a chain of else if's may be present, check for contiguous else if's
+                    List<int> elseIfIndices = new List<int>();
+
+                    //iterate over the current conversation block
+                    for (int l = currentProgress; l < currentConversation.Count; l++)
+                    {
+                        //check the indentation of the else if line
+                        char[] elseIfCharArray = line.dialogueData.rawData.ToCharArray();
+                        int elseIfIndentCount = GetIndentCount(elseIfCharArray);
+
+                        //if the line comes before our current progress, or if the indentation is different
+                        //from the current if statement at the start of this block, skip the line and continue
+                        if (l < currentProgress || ifIndentCount != elseIfIndentCount)
+                        {
+                            continue;
+                        }
+
+                        //otherwise, check if line l starts with else if
+                        if (currentConversation.GetLines()[l].Trim().StartsWith(ElseIf))
+                        {
+                            elseIfIndices.Add(l);//this value should be the line in the file where the elseif line sits
+                        }
+                    }
+
+                    //process the relevant else if's in this block
+                    for (int i = 0; i < elseIfIndices.Count; i++)
+                    {
+                        //if the if conditional was true, just rip the data to get the ending index and update
+                        //otherwise, get the else if data, determine if the previous else if was true, and update the ending index
+                        
+                        if (!ifConditionResult)
+                        {
+                            tempData = RipEncapsulationData(currentConversation, ifData.endingIndex + 1, false);
+
+                            if (!elseIfConditionResult)
+                            {
+                                elseIfData = tempData;
+                                rawCondition = ExtractCondition(currentConversation.GetLines()[ifData.endingIndex + 1]);
+                                elseIfConditionResult = EvaluateCondition(rawCondition);
+                            }
+
+                            ifData.endingIndex = tempData.endingIndex;
+
+                            nextLine = currentConversation.GetLines()[ifData.endingIndex + 1].Trim();
+
+                            if (nextLine == Else)
+                            {
+                                elseData = RipEncapsulationData(currentConversation, ifData.endingIndex + 1, false);
+                                ifData.endingIndex = elseData.endingIndex;
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            tempData = RipEncapsulationData(currentConversation, ifData.endingIndex + 1, false);
+                            ifData.endingIndex = tempData.endingIndex;
+
+                            nextLine = currentConversation.GetLines()[ifData.endingIndex + 1].Trim();
+
+                            if (nextLine == Else)
+                            {
+                                elseData = RipEncapsulationData(currentConversation, ifData.endingIndex + 1, false);
+                                ifData.endingIndex = elseData.endingIndex;
+                                break;
+                            }
+
+                        }
+                    }
+                }
+
+                currentConversation.SetProgress(ifData.endingIndex);
+                EncapsulatedData selectedData = ifConditionResult ? ifData : elseIfConditionResult ? elseIfData : elseData;
+
+                if (selectedData.lines.Count > 0)
+                {
+                    Conversation newConversation = new Conversation(selectedData.lines);
+                    DialogueManager.instance.conversationManager.EnqueuePriority(newConversation);
+                }
+
+                yield return null;
+            }
+        }
+
+        public bool Matches(DialogueLine line)
+        {
+            return line.rawData.Trim().StartsWith(keyword);
+        }
+
+        private string ExtractCondition(string line)
+        {
+            int startIndex = line.IndexOf(Containers[0]) + 1;
+            int endIndex = line.IndexOf(Containers[1]);
+
+            return line.Substring(startIndex, endIndex - startIndex).Trim();
+        }
+
+        private int GetIndentCount(char[] characters)
+        {
+            int count = 0;
+
+            for (int i = 0; i < characters.Length; i++)
+            {
+                if (Char.IsWhiteSpace(characters[i]))
+                {
+                    count++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return count;
+        }
+    }
+}

@@ -1,0 +1,21 @@
+
+choice "which path will you take?"
+{
+    -Left
+        NARRATOR "You've elected to take the left path."
+        Load(LeftPath)
+    -Right
+        NARRATOR "You've elected to take the right path. Good job."
+        Load(RightPath)
+}
+
+if ($pathTaken == left)
+{
+    NARRATOR "You've elected to take the left path."
+    Load(LeftPath)
+}
+else
+{
+    NARRATOR "You've elected to take the right path. Good job."
+    Load(RightPath)
+}

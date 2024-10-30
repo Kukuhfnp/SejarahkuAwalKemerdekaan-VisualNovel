@@ -1,0 +1,68 @@
+
+wait(1)
+
+SetLayerMedia(background 1 02_3), wait(1)
+
+CreateCharacter(Alya -e true -i true)
+
+Alya.SetPosition(0.1 -0.125)
+Tia.SetPosition(0.7 0.825)
+Tia.Show()
+
+Alya "Haloooo"
+Alya.Unhighlight()
+
+Tia.Highlight()
+Tia "Halo jugaa"
+
+
+Alya "Menarik bukan?"
+
+[wait]HideDB(-spd 0.1)
+ClearLayerMedia(background -blend hypno) wait(1)
+
+wait(2)
+
+ShowDB(-i true)
+Alya "background berakhirrr"
+
+SetLayerMedia(background 02_1)
+Tia "background kembali yeay"
+
+[wait]HideUI(-spd 0.5)
+wait(1)
+[wait]ShowUi(-i true)
+
+Tia "wah kenapa itu tadi"
+
+Alya.SetPosition(0 -0.125), Tia.SetPosition(1)
+
+wait(1)
+[wait]Highlight(Alya), wait(1), [wait]Highlight(Alya ) wait(1)
+
+[wait]Tia.FlipRight(-i true), [wait]Tia.FlipLeft(-i true)
+wait(1)
+Tia.SetSprite(Sad02 -l 0 -spd 0.75),wait(1)
+Alya.SetSprite(happy -l 0 -spd 0.75),wait(1)
+[wait]Alya.FlipRight(-s 0.5), [wait]Alya.FlipLeft(-s 0.5 -i true)wait(1)
+
+[wait]MoveCharacter(Alya 1 -0.125 -spd 0.75)
+[wait]Alya.Hide(), [wait]Alya.Show()
+
+[wait]Alya.Move(0 -0.125 -spd 0.75)
+
+Hide(Alya -spd 0.1)
+Alya "Aku menghilanggggg"
+
+Show(Alya Tia -spd 0.1)
+
+
+Alya "Aduhhhh, gimana ini ya...{c} Mana jadwal ujiannya udah deket lagi elah..."
+MoveCharacter(Alya 0.25 -0.125 0.75)
+
+ShowAll(Tia)
+MoveCharacter(Tia 1 0.825 -immediate true)
+
+Tia "Lu kenapa si dek daritadi kayak setrika, mondar mandir mulu.{c} Apaan sini cerita coba ama kakak."
+
+SetLayerMedia(cinematic -m "~/Graphics/Gallery/flower")

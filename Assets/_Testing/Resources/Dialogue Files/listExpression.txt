@@ -1,0 +1,18 @@
+Alya - blush
+Alya - happy
+Alya - sad
+Alya - upset
+
+Tia - Angry01
+Tia - Angry02
+Tia - Annoyed01
+Tia - Annoyed02
+Tia - Neutral01
+Tia - Neutral02
+Tia - Sad01
+Tia - Sad02
+Tia - Sad03
+Tia - Smile01
+Tia - Smile02
+Tia - Smile03
+Tia - Smile04
