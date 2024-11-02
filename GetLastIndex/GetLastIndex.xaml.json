@@ -1,0 +1,33 @@
+{
+  "DisplayName": "GetLastIndex",
+  "Tooltip": null,
+  "HelpLink": null,
+  "Color": null,
+  "OriginalIconFileName": null,
+  "Arguments": [
+    {
+      "Name": "out_indexBottomColumn",
+      "DisplayName": "out_indexBottomColumn",
+      "Category": null,
+      "Tooltip": null,
+      "Placeholder": null,
+      "Widget": null,
+      "IsRequired": false,
+      "IsPrincipal": true,
+      "ArgumentType": 0,
+      "DataSourceItems": null
+    },
+    {
+      "Name": "Use_Google_Spreadsheet",
+      "DisplayName": "uipath-google-sheets",
+      "Category": null,
+      "Tooltip": "Use Google Spreadsheet",
+      "Placeholder": null,
+      "Widget": "Connection",
+      "IsRequired": true,
+      "IsPrincipal": true,
+      "ArgumentType": 1,
+      "DataSourceItems": null
+    }
+  ]
+}
